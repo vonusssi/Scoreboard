@@ -1,0 +1,301 @@
+ScreenManager:
+
+    MainScreen:
+    EverScreen:
+    PaganScreen:
+    WondersScreen:
+
+
+<MainScreen@Screen>:
+    name: "main"
+
+    GridLayout:
+        cols: 3
+        spacing: 5
+        padding: 5
+
+        ImageButton:
+            source: "everdell2.jpg"
+            allow_stretch: True
+            keep_ratio: True
+            on_press: app.image_clicked("ever")
+
+        ImageButton:
+            source: "pagan.png"
+            allow_stretch: True
+            keep_ratio: True
+            on_press: app.image_clicked("pagan")
+
+        ImageButton:
+            source: "sevenwonders.webp"
+            allow_stretch: True
+            keep_ratio: True
+            on_press: app.image_clicked("wonders")
+
+        Button:
+            text: "Load Profile"
+            on_press: app.show_input()
+<EverScreen@Screen>:
+    name: "ever"
+
+    FloatLayout:
+
+        Label:
+            text: "Everdell: " + app.current_profile
+            pos_hint: {"center_x":0.5,"top":1}
+            size_hint: 1, 0.3
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.6, 0.9, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Label:
+            text: str(app.scores["ever"][0][0])
+            color: 0,0,0,1
+            pos_hint: {"center_x":0.255,"top":0.67}
+            size_hint: 0.3, 0.2
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size       
+        Label:
+            text: str(app.scores["ever"][0][1])
+            color: 0,0,0,1
+            pos_hint: {"center_x":0.745,"top":0.67}
+            size_hint: 0.3, 0.2
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size        
+        Label: 
+            text: "Last Win: " + app.scores["ever"][1][0]
+            pos_hint: {"center_x":0.255,"top":0.35}
+            size_hint: 0.2, 0.1
+        Label: 
+            text: "Last Win: " + app.scores["ever"][1][1]
+            pos_hint: {"center_x":0.745,"top":0.35}
+            size_hint: 0.2, 0.1
+        Label: 
+            text: "Streak: " + str(app.scores["ever"][2][0])
+            pos_hint: {"center_x":0.255,"top":0.4}
+            size_hint: 0.2, 0.1
+        Label: 
+            text: "Streak: " + str(app.scores["ever"][2][1])
+            pos_hint: {"center_x":0.745,"top":0.4}
+            size_hint: 0.2, 0.1
+
+        Button:
+            text: "Back"
+            on_press: app.root.current = "main"
+            pos_hint: {"center_x":0.5,"top":0.2}
+            size_hint: 0.6, 0.15
+        Button:
+            text: "+"
+            font_size: 30
+            on_press: app.change_score("ever",0,1)
+            pos_hint: {"center_x":0.225,"top":0.45}
+            size_hint: 0.05, 0.05
+        Button:
+            text: "-"
+            font_size: 30
+            on_press: app.change_score("ever",0,-1)
+            pos_hint: {"center_x":0.285,"top":0.45}
+            size_hint: 0.05, 0.05
+        Button:
+            text: "+"
+            font_size: 30
+            on_press: app.change_score("ever",1,1)
+            pos_hint: {"center_x":0.715,"top":0.45}
+            size_hint: 0.05, 0.05    
+        Button:
+            text: "-"
+            font_size: 30
+            on_press: app.change_score("ever",1,-1)
+            pos_hint: {"center_x":0.775,"top":0.45}
+            size_hint: 0.05, 0.05    
+            
+
+
+<PaganScreen@Screen>:
+    name: "pagan"
+
+    FloatLayout:
+        
+        Label: 
+            text: "Last Win: " + app.scores["pagan"][1][0]
+            pos_hint: {"center_x":0.255,"top":0.35}
+            size_hint: 0.2, 0.1
+        Label: 
+            text: "Last Win: " + app.scores["pagan"][1][1]
+            pos_hint: {"center_x":0.745,"top":0.35}
+            size_hint: 0.2, 0.1
+        Label: 
+            text: "Streak: " + str(app.scores["pagan"][2][0])
+            pos_hint: {"center_x":0.255,"top":0.4}
+            size_hint: 0.2, 0.1
+        Label: 
+            text: "Streak: " + str(app.scores["pagan"][2][1])
+            pos_hint: {"center_x":0.745,"top":0.4}
+            size_hint: 0.2, 0.1
+
+        Label:
+            text: "Pagan: " + app.current_profile
+            pos_hint: {"center_x":0.5,"top":1}
+            size_hint: 1, 0.15
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.6, 0.9, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        Label:
+            text: str(app.scores["pagan"][0][0])
+            color: 0,0,0,1
+            pos_hint: {"center_x":0.255,"top":0.67}
+            size_hint: 0.3, 0.2
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size       
+        Label:
+            text: str(app.scores["pagan"][0][1])
+            color: 0,0,0,1
+            pos_hint: {"center_x":0.745,"top":0.67}
+            size_hint: 0.3, 0.2
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size            
+        Button:
+            text: "Back"
+            on_press: app.root.current = "main"
+            pos_hint: {"center_x":0.5,"top":0.2}
+            size_hint: 0.6, 0.15
+        Button:
+            text: "+"
+            font_size: 30
+            on_press: app.change_score("pagan",0,1)
+            pos_hint: {"center_x":0.225,"top":0.45}
+            size_hint: 0.05, 0.05
+        Button:
+            text: "-"
+            font_size: 30
+            on_press: app.change_score("pagan",0,-1)
+            pos_hint: {"center_x":0.285,"top":0.45}
+            size_hint: 0.05, 0.05
+        Button:
+            text: "+"
+            font_size: 30
+            on_press: app.change_score("pagan",1,1)
+            pos_hint: {"center_x":0.715,"top":0.45}
+            size_hint: 0.05, 0.05    
+        Button:
+            text: "-"
+            font_size: 30
+            on_press: app.change_score("pagan",1,-1)
+            pos_hint: {"center_x":0.775,"top":0.45}
+            size_hint: 0.05, 0.05    
+
+<WondersScreen@Screen>
+    name: "wonders"
+    
+    
+    FloatLayout:
+
+        canvas.before:
+            Color:
+                rgba: 0.6, 0.4, 0.2, 0.85
+            Rectangle: 
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Seven Wonders: " + app.current_profile
+            pos_hint: {"center_x":0.5,"top":1}
+            size_hint: 0.6, 0.15
+            canvas.before:
+                Color:
+                    rgba: 0.01, 0.3, 0.01, 0.85
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+       
+        Label:
+            text: str(app.scores["wonders"][0][0])
+            color: 0,0,0,1
+            pos_hint: {"center_x":0.255,"top":0.67}
+            size_hint: 0.3, 0.2
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size       
+        Label:
+            text: str(app.scores["wonders"][0][1])
+            color: 0,0,0,1
+            pos_hint: {"center_x":0.745,"top":0.67}
+            size_hint: 0.3, 0.2
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size         
+
+        Label: 
+            text: "Last Win: " + app.scores["wonders"][1][0]
+            pos_hint: {"center_x":0.255,"top":0.35}
+            size_hint: 0.2, 0.1
+        Label: 
+            text: "Last Win: " + app.scores["wonders"][1][1]
+            pos_hint: {"center_x":0.745,"top":0.35}
+            size_hint: 0.2, 0.1
+        Label: 
+            text: "Streak: " + str(app.scores["wonders"][2][1])
+            pos_hint: {"center_x":0.255,"top":0.4}
+            size_hint: 0.2, 0.1
+        Label: 
+            text: "Streak: " + str(app.scores["wonders"][2][0])
+            pos_hint: {"center_x":0.745,"top":0.4}
+            size_hint: 0.2, 0.1
+
+        Button:
+            text: "Back"
+            on_press: app.root.current = "main"
+            pos_hint: {"center_x":0.5,"top":0.2}
+            size_hint: 0.6, 0.15
+        Button:
+            text: "+"
+            font_size: 30
+            on_press: app.change_score("wonders",0,1)
+            pos_hint: {"center_x":0.225,"top":0.45}
+            size_hint: 0.05, 0.05
+        Button:
+            text: "-"
+            font_size: 30
+            on_press: app.change_score("wonders",0,-1)
+            pos_hint: {"center_x":0.285,"top":0.45}
+            size_hint: 0.05, 0.05
+        Button:
+            text: "+"
+            font_size: 30
+            on_press: app.change_score("wonders",1,1)
+            pos_hint: {"center_x":0.715,"top":0.45}
+            size_hint: 0.05, 0.05    
+        Button:
+            text: "-"
+            font_size: 30
+            on_press: app.change_score("wonders",1,-1)
+            pos_hint: {"center_x":0.775,"top":0.45}
+            size_hint: 0.05, 0.05    
