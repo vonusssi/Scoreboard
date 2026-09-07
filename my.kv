@@ -22,8 +22,8 @@ ScreenManager:
             radius: [dp(18), dp(18), dp(18), dp(18)]
 
 <StreakLabel@Label>:
-    font_size: "20sp"
-    size_hint: 0.21, 0.05
+    font_size: "16sp"
+    size_hint: 0.25, 0.05
     background_normal: ""
     background_down: ""
     background_color: 0, 0, 0, 0
@@ -36,7 +36,7 @@ ScreenManager:
             size: self.size
             radius: [dp(18), dp(18), dp(18), dp(18)]
 <LastWinLabel@Label>:
-    font_size: "20sp"
+    font_size: "12sp"
     size_hint: 0.4, 0.05
     background_normal: ""
     background_down: ""
@@ -112,13 +112,14 @@ ScreenManager:
             on_press: app.show_input()
         Button:
             text: "Load Profile"
-            on_press: app.show_profiles()
-        
+            on_press: app.show_profiles(mode="load")
+        Button:
+            text: "Delete Profile"
+            on_press: app.show_profiles(mode="delete")
 <EverScreen@Screen>:
     name: "ever"
 
-    FloatLayout:
-
+    FloatLayout: 
         canvas.before:
             Color:
                 rgba: 0.45, 0.37, 0.24, 1.0
@@ -128,7 +129,7 @@ ScreenManager:
 
         Label:
             text: "Everdell: " + app.current_profile
-            font_size: "48sp"
+            font_size: "32sp"
             font_name: "fonts/Medieval.ttf"
             color: 1.0, 0.9019607843137255, 0.6549019607843137, 1.0
             pos_hint: {"center_x":0.5,"top":1}

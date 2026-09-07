@@ -1,8 +1,8 @@
-from kivy.config import Config
+"""from kivy.config import Config
 
-Config.set("graphics", "width", "320")
-Config.set("graphics", "height", "600")
-
+Config.set("graphics", "width", "300")
+Config.set("graphics", "height", "570")
+"""
 from kivy.app import App
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.image import Image
@@ -108,12 +108,16 @@ class MyApp(App):
         # show popup and handle input
         popup = InputPopup(callback=self.create_profile, title_text="Enter Profile Name")
         popup.open()
-    def show_profiles(self):
+    def show_profiles(self, mode):
         json_path = os.path.join(os.path.dirname(__file__), "profiles.json")
         with open(json_path, "r") as f:
             profiles = json.load(f)
-        popup = InputPopupProfiles(callback=self.load_profile, title_text="Pick a Profile",options=profiles)
+        if mode=="load":    
+            popup = InputPopupProfiles(callback=self.load_profile, title_text="Pick a Profile",options=profiles)
+        elif mode=="delete":
+            popup = InputPopupProfiles(callback=self.delete_profile, title_text="Pick a Profile",options=profiles)
         popup.open()
+
     def image_clicked(self, screen_name):
         self.root.current = screen_name
 
@@ -127,6 +131,8 @@ class MyApp(App):
             "pagan": list(data["pagan"]),
             "wonders": list(data["wonders"])
         }
+    def delete_profile(self, name):
+        self.store.delete(name)
     def create_profile(self, name):
 
         self.current_profile = name
