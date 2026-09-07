@@ -1,3 +1,8 @@
+from kivy.config import Config
+
+Config.set("graphics", "width", "320")
+Config.set("graphics", "height", "600")
+
 from kivy.app import App
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.image import Image
@@ -12,6 +17,10 @@ from kivy.uix.label import Label
 from kivy.properties import StringProperty
 from kivy.properties import NumericProperty
 from datetime import date
+from kivy.uix.scrollview import ScrollView
+from kivy.uix.gridlayout import GridLayout
+import json 
+import os
 
 
 class InputPopup(Popup):
@@ -36,11 +45,51 @@ class InputPopup(Popup):
 
         layout.add_widget(button_layout)
         self.content = layout
-
     def on_ok(self, instance):
         text = self.textinput.text
         self.callback(text)  # call the function with the input
         self.dismiss()
+class InputPopupProfiles(Popup):
+    def __init__(self, callback, title_text, options, **kwargs):
+        super().__init__(**kwargs)
+        self.title = title_text
+        self.size_hint = (0.8, 0.4)
+
+        self.callback = callback  # function to call with the input
+
+        layout = BoxLayout(orientation="vertical", spacing=10, padding=10)
+        
+        scroll = ScrollView()
+        grid = GridLayout(
+            cols=2,
+            spacing=8,
+            padding=8,
+            size_hint_y=None,
+        )
+        grid.bind(minimum_height=grid.setter("height"))
+        for option in options:
+            btn = Button(text=option,size_hint_y=None,
+                height=44,)
+            btn.bind(on_press=self.make_select(option))
+            grid.add_widget(btn)
+
+        scroll.add_widget(grid)
+        layout.add_widget(scroll)
+
+        # Cancel button at the bottom
+        cancel_btn = Button(text="Cancel", size_hint_y=None, height=44)
+        cancel_btn.bind(on_press=self.dismiss)
+        layout.add_widget(cancel_btn)
+
+        self.content = layout
+
+
+    
+    def make_select(self, option):
+        def handler(instance):
+            self.dismiss()
+            self.callback(option)
+        return handler
 
 class ImageButton(ButtonBehavior, Image):
     pass
@@ -57,7 +106,13 @@ class MyApp(App):
     })
     def show_input(self):
         # show popup and handle input
-        popup = InputPopup(callback=self.load_profile, title_text="Enter Profile Name")
+        popup = InputPopup(callback=self.create_profile, title_text="Enter Profile Name")
+        popup.open()
+    def show_profiles(self):
+        json_path = os.path.join(os.path.dirname(__file__), "profiles.json")
+        with open(json_path, "r") as f:
+            profiles = json.load(f)
+        popup = InputPopupProfiles(callback=self.load_profile, title_text="Pick a Profile",options=profiles)
         popup.open()
     def image_clicked(self, screen_name):
         self.root.current = screen_name
@@ -67,6 +122,14 @@ class MyApp(App):
 
     def load_profile(self, name):
         self.current_profile = name
+        data = self.store.get(name)
+        self.scores= {"ever": list(data["ever"]),
+            "pagan": list(data["pagan"]),
+            "wonders": list(data["wonders"])
+        }
+    def create_profile(self, name):
+
+        self.current_profile = name
         if not self.store.exists(name):
             self.store.put(name, ever=[[0,0],["00.00.0000","00.00.0000"],[0,0]], pagan=[[0,0],["00.00.0000","00.00.0000"],[0,0]], wonders=[[0,0],["00.00.0000","00.00.0000"],[0,0]])
         data = self.store.get(name)
@@ -74,6 +137,7 @@ class MyApp(App):
             "pagan": list(data["pagan"]),
             "wonders": list(data["wonders"])
         }
+    
 
     """    def add_score_Input_1(self):
         popup=InputPopup(callback=self.change_score, title_text="") 
@@ -112,7 +176,7 @@ class MyApp(App):
         if not self.store.exists(self.current_profile):
             return 0
 
-    
+
         data = self.store.get(self.current_profile)
         self.ever_score1 = (data[game])[player]
         return self.ever_score1
