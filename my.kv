@@ -93,18 +93,24 @@ ScreenManager:
             source: "everdell2.jpg"
             allow_stretch: True
             keep_ratio: True
+            size_hint_y: None
+            height: self.width
             on_press: app.image_clicked("ever")
 
         ImageButton:
             source: "pagan.png"
             allow_stretch: True
             keep_ratio: True
+            size_hint_y: None
+            height: self.width
             on_press: app.image_clicked("pagan")
 
         ImageButton:
             source: "sevenwonders.webp"
             allow_stretch: True
             keep_ratio: True
+            size_hint_y: None
+            height: self.width
             on_press: app.image_clicked("wonders")
 
         Button:
