@@ -4,6 +4,12 @@ ScreenManager:
     EverScreen:
     PaganScreen:
     WondersScreen:
+    CleverScreen:
+    Clever4Screen:
+    KniffelScreen:
+    TargiScreen:
+    DiceScreen:
+    HarmoniesScreen:
 
 
 <ScoreLabel@Label>:
@@ -90,22 +96,58 @@ ScreenManager:
         padding: 5
 
         ImageButton:
-            source: "everdell2.jpg"
+            source: "Images_changed/everdell2.png"
             allow_stretch: True
             keep_ratio: True
             on_press: app.image_clicked("ever")
 
         ImageButton:
-            source: "pagan.png"
+            source: "Images_changed/pagan.png"
             allow_stretch: True
             keep_ratio: True
             on_press: app.image_clicked("pagan")
 
         ImageButton:
-            source: "sevenwonders.webp"
+            source: "Images_changed/sevenwonders.png"
             allow_stretch: True
             keep_ratio: True
             on_press: app.image_clicked("wonders")
+
+        ImageButton:
+            source: "Images_changed/Clever.png"
+            allow_stretch: True
+            keep_ratio: True
+            on_press: app.image_clicked("clever")
+
+        ImageButton:
+            source: "Images_changed/Clever4.png"
+            allow_stretch: True
+            keep_ratio: True
+            on_press: app.image_clicked("clever4")
+
+        ImageButton:
+            source: "Images_changed/Kniffel.png"
+            allow_stretch: True
+            keep_ratio: False
+            on_press: app.image_clicked("kniffel")
+
+        ImageButton:
+            source: "Images_changed/Targi.png"
+            allow_stretch: True
+            keep_ratio: True
+            on_press: app.image_clicked("targi")
+
+        ImageButton:
+            source: "Images_changed/Dice.png"
+            allow_stretch: True
+            keep_ratio: True
+            on_press: app.image_clicked("dice")
+
+        ImageButton:
+            source: "Images_changed/Harmonies.png"
+            allow_stretch: True
+            keep_ratio: True
+            on_press: app.image_clicked("harmonies")
 
         Button:
             text: "Create Profile"
@@ -142,26 +184,26 @@ ScreenManager:
                     size: self.size
 
         ScoreLabel:
-            text: str(app.scores["ever"][0][0])
+            text: str(app.scores["Ever"][0][0])
             color: 0.25, 0.65, 1, 1
             pos_hint: {"center_x":0.255,"top":0.67}
             size_hint: 0.3, 0.2
         ScoreLabel:
-            text: str(app.scores["ever"][0][1])
+            text: str(app.scores["Ever"][0][1])
             color: 1, 0.55, 0.2, 1
             pos_hint: {"center_x":0.745,"top":0.67}
             size_hint: 0.3, 0.2
         LastWinLabel: 
-            text: "Last Win: " + app.scores["ever"][1][0]
+            text: "Last Win: " + app.scores["Ever"][1][0]
             pos_hint: {"center_x":0.255,"top":0.3}
         LastWinLabel: 
-            text: "Last Win: " + app.scores["ever"][1][1]
+            text: "Last Win: " + app.scores["Ever"][1][1]
             pos_hint: {"center_x":0.745,"top":0.3}
         StreakLabel: 
-            text: "Streak: " + str(app.scores["ever"][2][0])
+            text: "Streak: " + str(app.scores["Ever"][2][0])
             pos_hint: {"center_x":0.255,"top":0.375}
         StreakLabel: 
-            text: "Streak: " + str(app.scores["ever"][2][1])
+            text: "Streak: " + str(app.scores["Ever"][2][1])
             pos_hint: {"center_x":0.745,"top":0.375}
 
         Button:
@@ -176,17 +218,17 @@ ScreenManager:
             pos_hint: {"center_x":0.5,"top":0.2}
             size_hint: 0.4, 0.1
         PlusButton:
-            on_press: app.change_score("ever",0,1)
+            on_press: app.change_score("Ever",0,1)
             pos_hint: {"center_x":0.17,"top":0.45}
         MinusButton:
-            on_press: app.change_score("ever",0,-1)
+            on_press: app.change_score("Ever",0,-1)
             pos_hint: {"center_x":0.34,"top":0.45}
 
         PlusButton:
-            on_press: app.change_score("ever",1,1)
+            on_press: app.change_score("Ever",1,1)
             pos_hint: {"center_x":0.66,"top":0.45}
         MinusButton:
-            on_press: app.change_score("ever",1,-1)
+            on_press: app.change_score("Ever",1,-1)
             pos_hint: {"center_x":0.83,"top":0.45}
             
 
@@ -195,80 +237,92 @@ ScreenManager:
     name: "pagan"
 
     FloatLayout:
-        
-        Label: 
-            text: "Last Win: " + app.scores["pagan"][1][0]
-            pos_hint: {"center_x":0.255,"top":0.35}
-            size_hint: 0.2, 0.1
-        Label: 
-            text: "Last Win: " + app.scores["pagan"][1][1]
-            pos_hint: {"center_x":0.745,"top":0.35}
-            size_hint: 0.2, 0.1
-        Label: 
-            text: "Streak: " + str(app.scores["pagan"][2][0])
-            pos_hint: {"center_x":0.255,"top":0.4}
-            size_hint: 0.2, 0.1
-        Label: 
-            text: "Streak: " + str(app.scores["pagan"][2][1])
-            pos_hint: {"center_x":0.745,"top":0.4}
-            size_hint: 0.2, 0.1
+        canvas.before:
+            Color:
+                rgba: 0.2, 0.6, 0.9, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
 
         Label:
             text: "Pagan: " + app.current_profile
+            font_size: "32sp"
+            font_name: "fonts/Medieval.ttf"
+            color: 1.0, 0.9019607843137255, 0.6549019607843137, 1.0
             pos_hint: {"center_x":0.5,"top":1}
-            size_hint: 1, 0.15
+            size_hint: 1, 0.3
             canvas.before:
                 Color:
                     rgba: 0.2, 0.6, 0.9, 1
                 Rectangle:
                     pos: self.pos
                     size: self.size
+
         ScoreLabel:
-            text: str(app.scores["pagan"][0][0])
+            text: str(app.scores["Pagan"][0][0])
             color: 0.25, 0.65, 1, 1
             pos_hint: {"center_x":0.255,"top":0.67}
             size_hint: 0.3, 0.2
         ScoreLabel:
-            text: str(app.scores["pagan"][0][1])
+            text: str(app.scores["Pagan"][0][1])
             color: 1, 0.55, 0.2, 1
             pos_hint: {"center_x":0.745,"top":0.67}
             size_hint: 0.3, 0.2
+        LastWinLabel:
+            text: "Last Win: " + app.scores["Pagan"][1][0]
+            pos_hint: {"center_x":0.255,"top":0.3}
+        LastWinLabel:
+            text: "Last Win: " + app.scores["Pagan"][1][1]
+            pos_hint: {"center_x":0.745,"top":0.3}
+        StreakLabel:
+            text: "Streak: " + str(app.scores["Pagan"][2][0])
+            pos_hint: {"center_x":0.255,"top":0.375}
+        StreakLabel:
+            text: "Streak: " + str(app.scores["Pagan"][2][1])
+            pos_hint: {"center_x":0.745,"top":0.375}
         Button:
             text: "Back"
+            font_size: "48sp"
+            font_name: "fonts/Medieval.ttf"
+            color: 1.0, 0.9019607843137255, 0.6549019607843137, 1.0
+            background_normal: ""
+            background_down: ""
+            background_color: 0.2, 0.6, 0.9, 1
             on_press: app.root.current = "main"
             pos_hint: {"center_x":0.5,"top":0.2}
-            size_hint: 0.6, 0.15
+            size_hint: 0.4, 0.1
         PlusButton:
-            on_press: app.change_score("pagan",0,1)
-            pos_hint: {"center_x":0.225,"top":0.45}
+            on_press: app.change_score("Pagan",0,1)
+            pos_hint: {"center_x":0.17,"top":0.45}
         MinusButton:
-            on_press: app.change_score("pagan",0,-1)
-            pos_hint: {"center_x":0.285,"top":0.45}
+            on_press: app.change_score("Pagan",0,-1)
+            pos_hint: {"center_x":0.34,"top":0.45}
         PlusButton:
-            on_press: app.change_score("pagan",1,1)
-            pos_hint: {"center_x":0.715,"top":0.45}
+            on_press: app.change_score("Pagan",1,1)
+            pos_hint: {"center_x":0.66,"top":0.45}
         MinusButton:
-            on_press: app.change_score("pagan",1,-1)
-            pos_hint: {"center_x":0.775,"top":0.45}
+            on_press: app.change_score("Pagan",1,-1)
+            pos_hint: {"center_x":0.83,"top":0.45}
         
 
 <WondersScreen@Screen>
     name: "wonders"
-    
-    
-    FloatLayout:
 
+    FloatLayout:
         canvas.before:
             Color:
                 rgba: 0.6, 0.4, 0.2, 0.85
-            Rectangle: 
+            Rectangle:
                 pos: self.pos
                 size: self.size
 
         Label:
             text: "Seven Wonders: " + app.current_profile
+            font_size: "32sp"
+            font_name: "fonts/Medieval.ttf"
+            color: 1.0, 0.9019607843137255, 0.6549019607843137, 1.0
             pos_hint: {"center_x":0.5,"top":1}
-            size_hint: 0.6, 0.15
+            size_hint: 1, 0.3
             canvas.before:
                 Color:
                     rgba: 0.01, 0.3, 0.01, 0.85
@@ -277,48 +331,138 @@ ScreenManager:
                     size: self.size
        
         ScoreLabel:
-            text: str(app.scores["wonders"][0][0])
+            text: str(app.scores["Wonders"][0][0])
             color: 0.25, 0.65, 1, 1
             pos_hint: {"center_x":0.255,"top":0.67}
             size_hint: 0.3, 0.2
         ScoreLabel:
-            text: str(app.scores["wonders"][0][1])
+            text: str(app.scores["Wonders"][0][1])
             color: 1, 0.55, 0.2, 1
             pos_hint: {"center_x":0.745,"top":0.67}
             size_hint: 0.3, 0.2
-
-        Label: 
-            text: "Last Win: " + app.scores["wonders"][1][0]
-            pos_hint: {"center_x":0.255,"top":0.35}
-            size_hint: 0.2, 0.1
-        Label: 
-            text: "Last Win: " + app.scores["wonders"][1][1]
-            pos_hint: {"center_x":0.745,"top":0.35}
-            size_hint: 0.2, 0.1
-        Label: 
-            text: "Streak: " + str(app.scores["wonders"][2][0])
-            pos_hint: {"center_x":0.255,"top":0.4}
-            size_hint: 0.2, 0.1
-        Label: 
-            text: "Streak: " + str(app.scores["wonders"][2][1])
-            pos_hint: {"center_x":0.745,"top":0.4}
-            size_hint: 0.2, 0.1
-
+        LastWinLabel:
+            text: "Last Win: " + app.scores["Wonders"][1][0]
+            pos_hint: {"center_x":0.255,"top":0.3}
+        LastWinLabel:
+            text: "Last Win: " + app.scores["Wonders"][1][1]
+            pos_hint: {"center_x":0.745,"top":0.3}
+        StreakLabel:
+            text: "Streak: " + str(app.scores["Wonders"][2][0])
+            pos_hint: {"center_x":0.255,"top":0.375}
+        StreakLabel:
+            text: "Streak: " + str(app.scores["Wonders"][2][1])
+            pos_hint: {"center_x":0.745,"top":0.375}
         Button:
             text: "Back"
+            font_size: "48sp"
+            font_name: "fonts/Medieval.ttf"
+            color: 1.0, 0.9019607843137255, 0.6549019607843137, 1.0
+            background_normal: ""
+            background_down: ""
+            background_color: 0.01, 0.3, 0.01, 0.85
             on_press: app.root.current = "main"
             pos_hint: {"center_x":0.5,"top":0.2}
-            size_hint: 0.6, 0.15
+            size_hint: 0.4, 0.1
         PlusButton:
-            on_press: app.change_score("wonders",0,1)
-            pos_hint: {"center_x":0.225,"top":0.45}
+            on_press: app.change_score("Wonders",0,1)
+            pos_hint: {"center_x":0.17,"top":0.45}
         MinusButton:
-            on_press: app.change_score("wonders",0,-1)
-            pos_hint: {"center_x":0.285,"top":0.45}
+            on_press: app.change_score("Wonders",0,-1)
+            pos_hint: {"center_x":0.34,"top":0.45}
         PlusButton:
-            on_press: app.change_score("wonders",1,1)
-            pos_hint: {"center_x":0.715,"top":0.45}
+            on_press: app.change_score("Wonders",1,1)
+            pos_hint: {"center_x":0.66,"top":0.45}
         MinusButton:
-            on_press: app.change_score("wonders",1,-1)
-            pos_hint: {"center_x":0.775,"top":0.45}
-            
+            on_press: app.change_score("Wonders",1,-1)
+            pos_hint: {"center_x":0.83,"top":0.45}
+
+
+<CleverScreen@Screen>:
+    name: "clever"
+
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0.45, 0.37, 0.24, 1.0
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Clever: " + app.current_profile
+            font_size: "32sp"
+            font_name: "fonts/Medieval.ttf"
+            color: 1.0, 0.9019607843137255, 0.6549019607843137, 1.0
+            pos_hint: {"center_x":0.5,"top":1}
+            size_hint: 1, 0.3
+            canvas.before:
+                Color:
+                    rgba: 0.2196078431372549, 0.4, 0.2549019607843137, 1.0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        ScoreLabel:
+            text: str(app.scores["Clever"][0][0])
+            color: 0.25, 0.65, 1, 1
+            pos_hint: {"center_x":0.255,"top":0.67}
+            size_hint: 0.3, 0.2
+        ScoreLabel:
+            text: str(app.scores["Clever"][0][1])
+            color: 1, 0.55, 0.2, 1
+            pos_hint: {"center_x":0.745,"top":0.67}
+            size_hint: 0.3, 0.2
+        LastWinLabel:
+            text: "Last Win: " + app.scores["Clever"][1][0]
+            pos_hint: {"center_x":0.255,"top":0.3}
+        LastWinLabel:
+            text: "Last Win: " + app.scores["Clever"][1][1]
+            pos_hint: {"center_x":0.745,"top":0.3}
+        StreakLabel:
+            text: "Streak: " + str(app.scores["Clever"][2][0])
+            pos_hint: {"center_x":0.255,"top":0.375}
+        StreakLabel:
+            text: "Streak: " + str(app.scores["Clever"][2][1])
+            pos_hint: {"center_x":0.745,"top":0.375}
+        Button:
+            text: "Back"
+            font_size: "48sp"
+            font_name: "fonts/Medieval.ttf"
+            color: 1.0, 0.9019607843137255, 0.6549019607843137, 1.0
+            background_normal: ""
+            background_down: ""
+            background_color: 0.2196078431372549, 0.4, 0.2549019607843137, 1.0
+            on_press: app.root.current = "main"
+            pos_hint: {"center_x":0.5,"top":0.2}
+            size_hint: 0.4, 0.1
+        PlusButton:
+            on_press: app.change_score("Clever",0,1)
+            pos_hint: {"center_x":0.17,"top":0.45}
+        MinusButton:
+            on_press: app.change_score("Clever",0,-1)
+            pos_hint: {"center_x":0.34,"top":0.45}
+        PlusButton:
+            on_press: app.change_score("Clever",1,1)
+            pos_hint: {"center_x":0.66,"top":0.45}
+        MinusButton:
+            on_press: app.change_score("Clever",1,-1)
+            pos_hint: {"center_x":0.83,"top":0.45}
+
+
+<Clever4Screen@CleverScreen>:
+    name: "clever4"
+
+
+<KniffelScreen@CleverScreen>:
+    name: "kniffel"
+
+
+<TargiScreen@CleverScreen>:
+    name: "targi"
+
+
+<DiceScreen@CleverScreen>:
+    name: "dice"
+
+<HarmoniesScreen@CleverScreen>:
+    name: "harmonies"

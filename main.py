@@ -1,7 +1,7 @@
-"""from kivy.config import Config
+from kivy.config import Config
 Config.set("graphics", "width", "300")
 Config.set("graphics", "height", "570")
-"""
+
 from kivy.app import App
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.image import Image
@@ -99,9 +99,15 @@ class MyApp(App):
         self.store = JsonStore("profiles.json")
     current_profile = StringProperty("")
     scores = DictProperty({
-        "ever": [[0,0],["00.00.0000","00.00.0000"],[0,0]],
-        "pagan": [[0,0],["00.00.0000","00.00.0000"],[0,0]],
-        "wonders": [[0,0],["00.00.0000","00.00.0000"],[0,0]]
+        "Ever": [[0,0],["00.00.0000","00.00.0000"],[0,0]],
+        "Pagan": [[0,0],["00.00.0000","00.00.0000"],[0,0]],
+        "Wonders": [[0,0],["00.00.0000","00.00.0000"],[0,0]],
+        "Clever": [[0,0],["00.00.0000","00.00.0000"],[0,0]],
+        "Clever4": [[0,0],["00.00.0000","00.00.0000"],[0,0]],
+        "Kniffel": [[0,0],["00.00.0000","00.00.0000"],[0,0]],
+        "Targi": [[0,0],["00.00.0000","00.00.0000"],[0,0]],
+        "Dice": [[0,0],["00.00.0000","00.00.0000"],[0,0]],
+        "Harmonies": [[0,0],["00.00.0000","00.00.0000"],[0,0]]
     })
     def show_input(self):
         # show popup and handle input
@@ -126,9 +132,15 @@ class MyApp(App):
     def load_profile(self, name):
         self.current_profile = name
         data = self.store.get(name)
-        self.scores= {"ever": list(data["ever"]),
-            "pagan": list(data["pagan"]),
-            "wonders": list(data["wonders"])
+        self.scores= {"Ever": list(data["Ever"]),
+            "Pagan": list(data["Pagan"]),
+            "Wonders": list(data["Wonders"]),
+            "Clever": list(data["Clever"]),
+            "Clever4": list(data["Clever4"]),
+            "Kniffel": list(data["Kniffel"]),
+            "Targi": list(data["Targi"]),
+            "Dice": list(data["Dice"]),
+            "Harmonies": list(data["Harmonies"])
         }
     def delete_profile(self, name):
         self.store.delete(name)
@@ -138,20 +150,18 @@ class MyApp(App):
         if not self.store.exists(name):
             self.store.put(name, ever=[[0,0],["00.00.0000","00.00.0000"],[0,0]], pagan=[[0,0],["00.00.0000","00.00.0000"],[0,0]], wonders=[[0,0],["00.00.0000","00.00.0000"],[0,0]])
         data = self.store.get(name)
-        self.scores= {"ever": list(data["ever"]),
-            "pagan": list(data["pagan"]),
-            "wonders": list(data["wonders"])
+        self.scores= {"Ever": list(data["Ever"]),
+            "Pagan": list(data["Pagan"]),
+            "Wonders": list(data["Wonders"]),
+            "Clever": list(data["Clever"]),
+            "Clever4": list(data["Clever4"]),
+            "Kniffel": list(data["Kniffel"]),
+            "Targi": list(data["Targi"]),
+            "Dice": list(data["Dice"]),
+            "Harmonies": list(data["Harmonies"])
         }
     
 
-    """    def add_score_Input_1(self):
-        popup=InputPopup(callback=self.change_score, title_text="") 
-    def add_score_Input_2(self):
-        popup=InputPopup(callback=self.change_score, title_text="") 
-    def minus_score_Input_2(self):
-        popup=InputPopup(callback=self.change_score, title_text="")    
-    def minus_score_Input_2(self):
-        popup=InputPopup(callback=self.change_score, title_text="")     """
     #Here Player is either 0 or 1 to give first or second player a score up or down
     #Sign is either + or - 1
     def change_score(self, game, player, sign):
