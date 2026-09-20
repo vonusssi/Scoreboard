@@ -15,6 +15,7 @@
 #:set color3_neutral (0.8117647058823529, 0.8784313725490196, 0.7647058823529411, 1.0) #Font
 
 
+
 ScreenManager:
 
     MainScreen:
@@ -255,6 +256,9 @@ ScreenManager:
             color: color3_ever
             pos_hint: {"center_x":0.5,"top":1}
             size_hint: 1, 0.3
+            text_size: self.size
+            halign: "center"
+            valign: "middle"
             canvas.before:
                 Color:
                     rgba: color2_ever
@@ -330,6 +334,9 @@ ScreenManager:
             color: color3_pagan
             pos_hint: {"center_x":0.5,"top":1}
             size_hint: 1, 0.3
+            text_size: self.size
+            halign: "center"
+            valign: "middle"
             canvas.before:
                 Color:
                     rgba: color2_pagan
@@ -402,6 +409,9 @@ ScreenManager:
             color: color3_wonders
             pos_hint: {"center_x":0.5,"top":1}
             size_hint: 1, 0.3
+            text_size: self.size
+            halign: "center"
+            valign: "middle"
             canvas.before:
                 Color:
                     rgba: color2_wonders
@@ -458,6 +468,7 @@ ScreenManager:
 
 <CleverScreen@Screen>:
     name: "Ganz schön Clever"
+    subname: "Clever"
 
     FloatLayout:
         canvas.before:
@@ -468,12 +479,15 @@ ScreenManager:
                 size: self.size
 
         Label:
-            text: root.name + app.current_profile
+            text: root.name + ": " + app.current_profile
             font_size: "32sp"
             font_name: "fonts/Medieval.ttf"
             color: color3_neutral
             pos_hint: {"center_x":0.5,"top":1}
             size_hint: 1, 0.3
+            text_size: self.size
+            halign: "center"
+            valign: "middle"
             canvas.before:
                 Color:
                     rgba: color2_neutral
@@ -482,26 +496,26 @@ ScreenManager:
                     size: self.size
 
         ScoreLabel:
-            text: str(app.scores["Clever"][0][0])
+            text: str(app.scores[root.subname][0][0])
             color: 0.25, 0.65, 1, 1
             pos_hint: {"center_x":0.255,"top":0.67}
             size_hint: 0.3, 0.2
         ScoreLabel:
-            text: str(app.scores["Clever"][0][1])
+            text: str(app.scores[root.subname][0][1])
             color: 1, 0.55, 0.2, 1
             pos_hint: {"center_x":0.745,"top":0.67}
             size_hint: 0.3, 0.2
         LastWinLabel:
-            text: "Last Win: " + app.scores["Clever"][1][0]
+            text: "Last Win: " + app.scores[root.subname][1][0]
             pos_hint: {"center_x":0.255,"top":0.3}
         LastWinLabel:
-            text: "Last Win: " + app.scores["Clever"][1][1]
+            text: "Last Win: " + app.scores[root.subname][1][1]
             pos_hint: {"center_x":0.745,"top":0.3}
         StreakLabel:
-            text: "Streak: " + str(app.scores["Clever"][2][0])
+            text: "Streak: " + str(app.scores[root.subname][2][0])
             pos_hint: {"center_x":0.255,"top":0.375}
         StreakLabel:
-            text: "Streak: " + str(app.scores["Clever"][2][1])
+            text: "Streak: " + str(app.scores[root.subname][2][1])
             pos_hint: {"center_x":0.745,"top":0.375}
         Button:
             text: "Back"
@@ -515,33 +529,37 @@ ScreenManager:
             pos_hint: {"center_x":0.5,"top":0.2}
             size_hint: 0.4, 0.1
         PlusButton:
-            on_press: app.change_score("Clever",0,1)
+            on_press: app.change_score(root.subname,0,1)
             pos_hint: {"center_x":0.17,"top":0.45}
         MinusButton:
-            on_press: app.change_score("Clever",0,-1)
+            on_press: app.change_score(root.subname,0,-1)
             pos_hint: {"center_x":0.34,"top":0.45}
         PlusButton:
-            on_press: app.change_score("Clever",1,1)
+            on_press: app.change_score(root.subname,1,1)
             pos_hint: {"center_x":0.66,"top":0.45}
         MinusButton:
-            on_press: app.change_score("Clever",1,-1)
+            on_press: app.change_score(root.subname,1,-1)
             pos_hint: {"center_x":0.83,"top":0.45}
 
 
 <Clever4Screen@CleverScreen>:
     name: "Clever 4 ever"
-
+    subname: "Clever4"
 
 <KniffelScreen@CleverScreen>:
     name: "Kniffel"
+    subname: "Kniffel"
 
 
 <TargiScreen@CleverScreen>:
     name: "Targi"
+    subname: "Targi"
 
 
 <DiceScreen@CleverScreen>:
     name: "Dice Throne"
+    subname: "Dice"
 
 <HarmoniesScreen@CleverScreen>:
     name: "Harmonies"
+    subname: "Harmonies"
