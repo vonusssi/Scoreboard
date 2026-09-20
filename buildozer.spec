@@ -26,7 +26,7 @@ source.exclude_dirs = Images, venv
 
 # (list) List of exclusions using pattern matching
 # Do not prefix with './'
-#source.exclude_patterns = license,images/*/*.jpg
+source.exclude_patterns = Color_translate.py
 
 # (str) Application versioning (method 1)
 version = 0.1
