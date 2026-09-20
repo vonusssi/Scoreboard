@@ -1,3 +1,20 @@
+#:set color1_ever (0.45, 0.37, 0.24, 1.0) #background 
+#:set color2_ever (0.2196078431372549, 0.4, 0.2549019607843137, 1.0)  #Labels
+#:set color3_ever (1.0, 0.9019607843137255, 0.6549019607843137, 1.0)  #Font
+
+#:set color1_pagan (0.4235294117647059, 0.4588235294117647, 0.49019607843137253, 1.0) #background
+#:set color2_pagan (0.32941176470588235, 0.043137254901960784, 0.054901960784313725, 0.8) #Labels
+#:set color3_pagan (1.0, 0.9529411764705882, 0.6901960784313725, 1.0) #Font
+
+#:set color1_wonders (0.12941176470588237, 0.6196078431372549, 0.7372549019607844, 1.0) #background
+#:set color2_wonders (0.0, 0.20784313725490197, 0.4, 1.0) #Labels
+#:set color3_wonders (1.0, 0.8392156862745098, 0.0392156862745098, 1.0) #Font
+
+#:set color1_neutral (0.6784313725490196, 0.7098039215686275, 0.7411764705882353, 1.0) #background
+#:set color2_neutral (0.01568627450980392, 0.2784313725490196, 0.10980392156862745, 1.0) #Labels
+#:set color3_neutral (0.8117647058823529, 0.8784313725490196, 0.7647058823529411, 1.0) #Font
+
+
 ScreenManager:
 
     MainScreen:
@@ -89,82 +106,144 @@ ScreenManager:
 
 <MainScreen@Screen>:
     name: "main"
+    
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0.7450980392156863, 0.5843137254901961, 0.7686274509803922, 1.0                                          #0.2901960784313726, 0.2901960784313726, 0.2901960784313726, 1.0
+            Rectangle:
+                pos: self.pos
+                size: self.size
 
-    GridLayout:
-        cols: 3
-        spacing: 5
-        padding: 5
+        GridLayout:
+            cols: 3
+            spacing: 5
+            padding: 5
+            
+            ImageButton:
+                source: "Images_fixed/everdell2.png"
+                allow_stretch: True
+                keep_ratio: False
+                on_press: app.image_clicked("Ever")
+                canvas.before:
+                    Color:
+                        rgba: 0.10, 0.10, 0.14, 1   # background color of each tile
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
 
-        ImageButton:
-            source: "Images_changed/everdell2.png"
-            allow_stretch: True
-            keep_ratio: True
-            on_press: app.image_clicked("ever")
+            ImageButton:
+                source: "Images_fixed/pagan.png"
+                allow_stretch: True
+                keep_ratio: False
+                on_press: app.image_clicked("Pagan")
+                canvas.before:
+                    Color:
+                        rgba: 0.10, 0.10, 0.14, 1   # background color of each tile
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
 
-        ImageButton:
-            source: "Images_changed/pagan.png"
-            allow_stretch: True
-            keep_ratio: True
-            on_press: app.image_clicked("pagan")
+            ImageButton:
+                source: "Images_fixed/sevenwonders.png"
+                allow_stretch: True
+                keep_ratio: False
+                on_press: app.image_clicked("Wonders")
+                canvas.before:
+                    Color:
+                        rgba: 0.10, 0.10, 0.14, 1   # background color of each tile
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
 
-        ImageButton:
-            source: "Images_changed/sevenwonders.png"
-            allow_stretch: True
-            keep_ratio: True
-            on_press: app.image_clicked("wonders")
+            ImageButton:
+                source: "Images_fixed/Clever.png"
+                allow_stretch: True
+                keep_ratio: False
+                on_press: app.image_clicked("Ganz schön Clever")
+                canvas.before:
+                    Color:
+                        rgba: 0.10, 0.10, 0.14, 1   # background color of each tile
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
 
-        ImageButton:
-            source: "Images_changed/Clever.png"
-            allow_stretch: True
-            keep_ratio: True
-            on_press: app.image_clicked("clever")
+            ImageButton:
+                source: "Images_fixed/Clever4.png"
+                allow_stretch: True
+                keep_ratio: False
+                on_press: app.image_clicked("Clever 4 ever")
+                canvas.before:
+                    Color:
+                        rgba: 0.10, 0.10, 0.14, 1   # background color of each tile
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
 
-        ImageButton:
-            source: "Images_changed/Clever4.png"
-            allow_stretch: True
-            keep_ratio: True
-            on_press: app.image_clicked("clever4")
+            ImageButton:
+                source: "Images_fixed/Kniffel.png"
+                allow_stretch: True
+                keep_ratio: False
+                on_press: app.image_clicked("Kniffel")
+                canvas.before:
+                    Color:
+                        rgba: 0.10, 0.10, 0.14, 1   # background color of each tile
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
 
-        ImageButton:
-            source: "Images_changed/Kniffel.png"
-            allow_stretch: True
-            keep_ratio: False
-            on_press: app.image_clicked("kniffel")
+            ImageButton:
+                source: "Images_fixed/Targi.png"
+                allow_stretch: True
+                keep_ratio: False
+                on_press: app.image_clicked("Targi")
+                canvas.before:
+                    Color:
+                        rgba: 0.10, 0.10, 0.14, 1   # background color of each tile
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
 
-        ImageButton:
-            source: "Images_changed/Targi.png"
-            allow_stretch: True
-            keep_ratio: True
-            on_press: app.image_clicked("targi")
+            ImageButton:
+                source: "Images_fixed/Dice.png"
+                allow_stretch: True
+                keep_ratio: False
+                on_press: app.image_clicked("Dice Throne")
+                canvas.before:
+                    Color:
+                        rgba: 0.10, 0.10, 0.14, 1   # background color of each tile
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
 
-        ImageButton:
-            source: "Images_changed/Dice.png"
-            allow_stretch: True
-            keep_ratio: True
-            on_press: app.image_clicked("dice")
+            ImageButton:
+                source: "Images_fixed/Harmonies.png"
+                allow_stretch: True
+                keep_ratio: False
+                on_press: app.image_clicked("Harmonies")
+                canvas.before:
+                    Color:
+                        rgba: 0.10, 0.10, 0.14, 1   # background color of each tile
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
 
-        ImageButton:
-            source: "Images_changed/Harmonies.png"
-            allow_stretch: True
-            keep_ratio: True
-            on_press: app.image_clicked("harmonies")
-
-        Button:
-            text: "Create Profile"
-            on_press: app.show_input()
-        Button:
-            text: "Load Profile"
-            on_press: app.show_profiles(mode="load")
-        Button:
-            text: "Delete Profile"
-            on_press: app.show_profiles(mode="delete")
+            Button:
+                text: "Create Profile"
+                on_press: app.show_input()
+            Button:
+                text: "Load Profile"
+                on_press: app.show_profiles(mode="load")
+            Button:
+                text: "Delete Profile"
+                on_press: app.show_profiles(mode="delete")
 <EverScreen@Screen>:
-    name: "ever"
+    name: "Ever"
 
     FloatLayout: 
         canvas.before:
             Color:
-                rgba: 0.45, 0.37, 0.24, 1.0
+                rgba: color1_ever
             Rectangle:
                 pos: self.pos
                 size: self.size
@@ -173,12 +252,12 @@ ScreenManager:
             text: "Everdell: " + app.current_profile
             font_size: "32sp"
             font_name: "fonts/Medieval.ttf"
-            color: 1.0, 0.9019607843137255, 0.6549019607843137, 1.0
+            color: color3_ever
             pos_hint: {"center_x":0.5,"top":1}
             size_hint: 1, 0.3
             canvas.before:
                 Color:
-                    rgba: 0.2196078431372549, 0.4, 0.2549019607843137, 1.0
+                    rgba: color2_ever
                 Rectangle:
                     pos: self.pos
                     size: self.size
@@ -210,10 +289,10 @@ ScreenManager:
             text: "Back"
             font_size: "48sp"
             font_name: "fonts/Medieval.ttf"
-            color: 1.0, 0.9019607843137255, 0.6549019607843137, 1.0
+            color: color3_ever
             background_normal: ""
             background_down: ""
-            background_color: 0.2196078431372549, 0.4, 0.2549019607843137, 1.0
+            background_color: color2_ever
             on_press: app.root.current = "main"
             pos_hint: {"center_x":0.5,"top":0.2}
             size_hint: 0.4, 0.1
@@ -234,12 +313,12 @@ ScreenManager:
 
 
 <PaganScreen@Screen>:
-    name: "pagan"
+    name: "Pagan"
 
     FloatLayout:
         canvas.before:
             Color:
-                rgba: 0.2, 0.6, 0.9, 1
+                rgba: color1_pagan
             Rectangle:
                 pos: self.pos
                 size: self.size
@@ -248,12 +327,12 @@ ScreenManager:
             text: "Pagan: " + app.current_profile
             font_size: "32sp"
             font_name: "fonts/Medieval.ttf"
-            color: 1.0, 0.9019607843137255, 0.6549019607843137, 1.0
+            color: color3_pagan
             pos_hint: {"center_x":0.5,"top":1}
             size_hint: 1, 0.3
             canvas.before:
                 Color:
-                    rgba: 0.2, 0.6, 0.9, 1
+                    rgba: color2_pagan
                 Rectangle:
                     pos: self.pos
                     size: self.size
@@ -284,10 +363,10 @@ ScreenManager:
             text: "Back"
             font_size: "48sp"
             font_name: "fonts/Medieval.ttf"
-            color: 1.0, 0.9019607843137255, 0.6549019607843137, 1.0
+            color: color3_pagan
             background_normal: ""
             background_down: ""
-            background_color: 0.2, 0.6, 0.9, 1
+            background_color: color2_pagan
             on_press: app.root.current = "main"
             pos_hint: {"center_x":0.5,"top":0.2}
             size_hint: 0.4, 0.1
@@ -306,12 +385,12 @@ ScreenManager:
         
 
 <WondersScreen@Screen>
-    name: "wonders"
+    name: "Wonders"
 
     FloatLayout:
         canvas.before:
             Color:
-                rgba: 0.6, 0.4, 0.2, 0.85
+                rgba: color1_wonders
             Rectangle:
                 pos: self.pos
                 size: self.size
@@ -320,12 +399,12 @@ ScreenManager:
             text: "Seven Wonders: " + app.current_profile
             font_size: "32sp"
             font_name: "fonts/Medieval.ttf"
-            color: 1.0, 0.9019607843137255, 0.6549019607843137, 1.0
+            color: color3_wonders
             pos_hint: {"center_x":0.5,"top":1}
             size_hint: 1, 0.3
             canvas.before:
                 Color:
-                    rgba: 0.01, 0.3, 0.01, 0.85
+                    rgba: color2_wonders
                 Rectangle:
                     pos: self.pos
                     size: self.size
@@ -356,10 +435,10 @@ ScreenManager:
             text: "Back"
             font_size: "48sp"
             font_name: "fonts/Medieval.ttf"
-            color: 1.0, 0.9019607843137255, 0.6549019607843137, 1.0
+            color: color3_wonders
             background_normal: ""
             background_down: ""
-            background_color: 0.01, 0.3, 0.01, 0.85
+            background_color: color2_wonders
             on_press: app.root.current = "main"
             pos_hint: {"center_x":0.5,"top":0.2}
             size_hint: 0.4, 0.1
@@ -378,26 +457,26 @@ ScreenManager:
 
 
 <CleverScreen@Screen>:
-    name: "clever"
+    name: "Ganz schön Clever"
 
     FloatLayout:
         canvas.before:
             Color:
-                rgba: 0.45, 0.37, 0.24, 1.0
+                rgba: color1_neutral
             Rectangle:
                 pos: self.pos
                 size: self.size
 
         Label:
-            text: "Clever: " + app.current_profile
+            text: root.name + app.current_profile
             font_size: "32sp"
             font_name: "fonts/Medieval.ttf"
-            color: 1.0, 0.9019607843137255, 0.6549019607843137, 1.0
+            color: color3_neutral
             pos_hint: {"center_x":0.5,"top":1}
             size_hint: 1, 0.3
             canvas.before:
                 Color:
-                    rgba: 0.2196078431372549, 0.4, 0.2549019607843137, 1.0
+                    rgba: color2_neutral
                 Rectangle:
                     pos: self.pos
                     size: self.size
@@ -428,10 +507,10 @@ ScreenManager:
             text: "Back"
             font_size: "48sp"
             font_name: "fonts/Medieval.ttf"
-            color: 1.0, 0.9019607843137255, 0.6549019607843137, 1.0
+            color: color3_neutral
             background_normal: ""
             background_down: ""
-            background_color: 0.2196078431372549, 0.4, 0.2549019607843137, 1.0
+            background_color: color2_neutral
             on_press: app.root.current = "main"
             pos_hint: {"center_x":0.5,"top":0.2}
             size_hint: 0.4, 0.1
@@ -450,19 +529,19 @@ ScreenManager:
 
 
 <Clever4Screen@CleverScreen>:
-    name: "clever4"
+    name: "Clever 4 ever"
 
 
 <KniffelScreen@CleverScreen>:
-    name: "kniffel"
+    name: "Kniffel"
 
 
 <TargiScreen@CleverScreen>:
-    name: "targi"
+    name: "Targi"
 
 
 <DiceScreen@CleverScreen>:
-    name: "dice"
+    name: "Dice Throne"
 
 <HarmoniesScreen@CleverScreen>:
-    name: "harmonies"
+    name: "Harmonies"
