@@ -238,6 +238,15 @@ ScreenManager:
             Button:
                 text: "Delete Profile"
                 on_press: app.show_profiles(mode="delete")
+            Button:
+                text: "Share Profile"
+                on_press: app.share_current_profile()
+            Button:
+                text: "Join Shared"
+                on_press: app.show_join()
+            Button:
+                text: "Sync Now"
+                on_press: app.sync_now()
 <EverScreen@Screen>:
     name: "Ever"
 
